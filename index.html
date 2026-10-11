@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="mk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Кино Планер</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍿</text></svg>">
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1>🍿 Кино Планер</h1>
+    <p>Избери филм, кино и термин — ние пресметуваме кога да тргнете и колку ќе чини.</p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="movies-h">
+      <div class="row-between">
+        <h2 id="movies-h">1. Избери филм</h2>
+        <div class="filters">
+          <input id="search" type="search" placeholder="Барај филм…" aria-label="Барај филм">
+          <select id="genre-filter" aria-label="Жанр"></select>
+        </div>
+      </div>
+      <div id="movie-list" class="movie-grid"></div>
+      <details class="add-movie">
+        <summary>+ Додади свој филм</summary>
+        <form id="movie-form" class="grid-form">
+          <label>Наслов <input name="title" required></label>
+          <label>Жанр <input name="genre" required></label>
+          <label>Траење (мин) <input name="duration" type="number" min="1" value="120" required></label>
+          <button type="submit">Додади</button>
+        </form>
+      </details>
+    </section>
+
+    <section class="card" aria-labelledby="plan-h">
+      <h2 id="plan-h">2. Испланирај излегување</h2>
+      <form id="plan-form" class="grid-form">
+        <label>Филм <select name="movie" required></select></label>
+        <label>Кино <select name="cinema" required></select></label>
+        <label>Датум <input name="date" type="date" required></label>
+        <label>Термин <select name="showtime" required></select></label>
+        <label>Пријатели (одвоени со запирка)
+          <input name="friends" placeholder="Ана, Марко, Елена">
+        </label>
+        <label>Превоз
+          <select name="transport">
+            <option value="walk">Пешки</option>
+            <option value="bus">Автобус</option>
+            <option value="taxi">Такси</option>
+            <option value="car">Автомобил</option>
+          </select>
+        </label>
+        <label>Време за патување (мин) <input name="travel" type="number" min="0" value="20"></label>
+        <label>Цена за превоз (ден., повратно) <input name="transportPrice" type="number" min="0" value="0"></label>
+        <label>Цена на билет (ден.) <input name="ticketPrice" type="number" min="0" value="300"></label>
+        <label class="check"><input name="snacks" type="checkbox" checked> Пуканки и пијалак</label>
+        <label class="wide">Белешки <textarea name="notes" rows="2" placeholder="пр. да резервираме седишта во средина"></textarea></label>
+
+        <div id="preview" class="preview wide" aria-live="polite"></div>
+        <button type="submit" class="wide primary">💾 Зачувај план</button>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="saved-h">
+      <h2 id="saved-h">3. Мои планови</h2>
+      <div id="plan-list"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
